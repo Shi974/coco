@@ -1,6 +1,8 @@
-#CoCo
+# CoCo
 
 ## Installation
+
+* prérequis : avoir Composer et Laravel installé sur la machine *
 
 - cloner le repo
 - copier coller le *.env.example* en **.env**
