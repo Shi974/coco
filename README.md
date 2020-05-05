@@ -2,7 +2,7 @@
 
 ## Installation
 
-*prérequis : avoir Composer et Laravel installés sur la machine*
+*prérequis* : avoir **Composer** et **Laravel installés** sur la machine
 
 - cloner le repo
 - copier coller le *.env.example* en **.env**
@@ -19,11 +19,18 @@
 
 ## A faire
 
-- installer package, générer models
+- générer models
 - créer des seeds
 - créer un layout
-- - head avec bootstrap cdn
-- - header
-- - footer
-- - main div container
-- créer les pages : x, x, x, etc.
+  - head avec bootstrap cdn
+  - header
+  - footer
+  - main div container
+- créer les pages
+  - fiche animal via scan
+  - mon compte
+  - fiche animal via compte
+- modifier les pages
+  - connexion
+  - inscription
+  - mot de passe perdu
