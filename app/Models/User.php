@@ -1,10 +1,11 @@
 <?php
 
-namespace App;
+/**
+ * Created by Reliese Model.
+ */
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+namespace App\Models;
+
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -34,24 +35,21 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Models
  */
-
-class User extends Authenticatable {
-    use Notifiable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-
-    protected $table = 'users';
+class User extends Model
+{
+	protected $table = 'users';
 
 	protected $dates = [
 		'email_verified_at'
 	];
 
-    protected $fillable = [
-        'username',
+	protected $hidden = [
+		'password',
+		'remember_token'
+	];
+
+	protected $fillable = [
+		'username',
 		'email',
 		'email_verified_at',
 		'password',
@@ -65,27 +63,10 @@ class User extends Authenticatable {
 		'country',
 		'phone',
 		'phone_plus'
-    ];
+	];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
-
-    public function animals() {
-		return $this -> hasMany(App\Models\Animal::class, 'users_id');
+	public function animals()
+	{
+		return $this->hasMany(Animal::class, 'users_id');
 	}
 }

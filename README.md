@@ -19,6 +19,8 @@
 
 ## A faire
 
+- rajouter colonne pour "type" ? différencier véto et user ?
+- générer le auth
 - générer models
 - créer des seeds
 - créer un layout
