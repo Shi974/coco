@@ -4,8 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAnimalsTable extends Migration
-{
+class CreateAnimalsTable extends Migration {
     /**
      * Schema table name to migrate
      * @var string
@@ -18,44 +17,43 @@ class CreateAnimalsTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create($this->tableName, function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->bigIncrements('id');
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->date('birth_date')->nullable()->default(null);
-            $table->string('type', 45);
-            $table->string('breed')->nullable();
-            $table->unsignedBigInteger('users_id');
-            $table->unsignedBigInteger('veterinary_id');
-            $table->unsignedBigInteger('health_records_id');
+    public function up() {
+        Schema::create($this -> tableName, function (Blueprint $table) {
+            $table -> engine = 'InnoDB';
+            $table -> bigIncrements('id');
+            $table -> string('first_name');
+            $table -> string('last_name');
+            $table -> date('birth_date') -> nullable() -> default(null);
+            $table -> string('type', 45);
+            $table -> string('breed') -> nullable();
+            $table -> unsignedBigInteger('users_id');
+            $table -> unsignedBigInteger('veterinary_id');
+            $table -> unsignedBigInteger('health_records_id');
 
-            $table->index(["veterinary_id"], 'fk_animal_veterinary1_idx');
+            $table -> index(["veterinary_id"], 'fk_animal_veterinary1_idx');
 
-            $table->index(["health_records_id"], 'fk_animals_health_records1_idx');
+            $table -> index(["health_records_id"], 'fk_animals_health_records1_idx');
 
-            $table->index(["users_id"], 'fk_animal_users_idx');
+            $table -> index(["users_id"], 'fk_animal_users_idx');
 
-            $table->unique(["last_name"], 'users_email_unique');
-            $table->nullableTimestamps();
+            $table -> unique(["last_name"], 'users_email_unique');
+            $table -> nullableTimestamps();
 
 
-            $table->foreign('users_id', 'fk_animal_users_idx')
-                ->references('id')->on('users')
-                ->onDelete('no action')
-                ->onUpdate('no action');
+            $table -> foreign('users_id', 'fk_animal_users_idx')
+                 -> references('id') -> on('users')
+                 -> onDelete('no action')
+                 -> onUpdate('no action');
 
-            $table->foreign('veterinary_id', 'fk_animal_veterinary1_idx')
-                ->references('id')->on('veterinaries')
-                ->onDelete('no action')
-                ->onUpdate('no action');
+            $table -> foreign('veterinary_id', 'fk_animal_veterinary1_idx')
+                 -> references('id') -> on('veterinaries')
+                 -> onDelete('no action')
+                 -> onUpdate('no action');
 
-            $table->foreign('health_records_id', 'fk_animals_health_records1_idx')
-                ->references('id')->on('health_records')
-                ->onDelete('no action')
-                ->onUpdate('no action');
+            $table -> foreign('health_records_id', 'fk_animals_health_records1_idx')
+                 -> references('id') -> on('health_records')
+                 -> onDelete('no action')
+                 -> onUpdate('no action');
         });
     }
 
@@ -64,8 +62,7 @@ class CreateAnimalsTable extends Migration
      *
      * @return void
      */
-     public function down()
-     {
-       Schema::dropIfExists($this->tableName);
-     }
+    public function down() {
+        Schema::dropIfExists($this -> tableName);
+    }
 }
