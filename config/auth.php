@@ -46,6 +46,18 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+
+        // AJOUT 2NDE AUTH VIA TABLE VETERINARIES
+        // 'veterinary' => [
+        'veto' => [
+            'driver' => 'session',
+            'provider' => 'veto',
+        ],
+        // 'veterinary-api' => [
+        'veto-api' => [
+            'driver' => 'token',
+            'provider' => 'veto',
+        ],
     ],
 
     /*
@@ -68,13 +80,20 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            // 'model' => App\User::class, // AJOUT MODELE RELIESE
+            'model' => App\Models\User::class,
         ],
 
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+
+        // AJOUT TABLE VETERINARIES EN PROVIDER
+        'veto' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Veterinary::class,
+        ],
     ],
 
     /*
@@ -95,6 +114,14 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+
+        // AJOUT VETERINARIES
+        'veto' => [
+            'provider' => 'veto',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

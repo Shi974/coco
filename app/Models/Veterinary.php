@@ -9,6 +9,8 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 /**
  * Class Veterinary
@@ -35,7 +37,12 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Models
  */
-class Veterinary extends Model {
+// class Veterinary extends Model {
+class Veterinary extends Authenticatable {
+    use Notifiable;
+
+	protected $guard = 'veto';
+
 	protected $table = 'veterinaries';
 
 	protected $dates = [

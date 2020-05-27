@@ -6,8 +6,7 @@ use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class RedirectIfAuthenticated
-{
+class RedirectIfAuthenticated {
     /**
      * Handle an incoming request.
      *
@@ -16,12 +15,28 @@ class RedirectIfAuthenticated
      * @param  string|null  $guard
      * @return mixed
      */
-    public function handle($request, Closure $next, $guard = null)
-    {
-        if (Auth::guard($guard)->check()) {
-            return redirect(RouteServiceProvider::HOME);
-        }
+    public function handle($request, Closure $next, $guard = null) {
+        // if (Auth::guard($guard)->check()) {
+        //     return redirect(RouteServiceProvider::HOME);
+        // }
 
+        // return $next($request);
+
+        switch ($guard) {
+            case 'veto':
+                if (Auth::guard($guard) -> check()) {
+                    return redirect() -> route('veto.dashboard');
+                }
+                break;
+                
+            default:
+                if (Auth::guard($guard) -> check()) {
+                    return redirect('/');
+                    // return redirect(RouteServiceProvider::HOME);
+                }
+                break;
+        }
+        
         return $next($request);
     }
 }

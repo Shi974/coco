@@ -9,6 +9,9 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 /**
  * Class User
@@ -35,8 +38,11 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Models
  */
-class User extends Model
-{
+class User extends Authenticatable {
+    use Notifiable;
+
+	protected $guard = 'users';
+
 	protected $table = 'users';
 
 	protected $dates = [
@@ -65,8 +71,16 @@ class User extends Model
 		'phone_plus'
 	];
 
-	public function animals()
-	{
+	/**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
+	public function animals() {
 		return $this->hasMany(Animal::class, 'users_id');
 	}
 }

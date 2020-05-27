@@ -16,29 +16,54 @@
 ## Packages utilisés
 
 - [reliese/laravel](https://github.com/reliese/laravel) : génération de models
+- [Laravel/ui - authentification](https://laravel.com/docs/7.x/frontend)
+- [barryvdh/laravel-debugbar](https://github.com/barryvdh/laravel-debugbar)
+- [caouecs / Laravel-lang](https://github.com/caouecs/Laravel-lang)
 
 ## A faire
 
-<!-- - rajouter colonne pour "type" ? différencier véto et user ? -->
-- générer le auth -> multi auth
-- générer models
+- Bulma min CSS
 - créer des seeds
 - créer un layout
-  - head avec bootstrap cdn
+  - head avec css
   - header
   - footer
   - main div container
 - créer les pages
   - fiche animal via scan
-  - mon compte
+  - dashboard user
+    - mon compte
+    - mes animaux
   - fiche animal via compte
+  - dashboard véto
+    - mon profil
+    - mes animaux
 - modifier les pages
   - connexion
+  - connexion veto
+  - dashboards
   - inscription
   - mot de passe perdu
 
+### Fait
+
+- Génération des models
+- Multi auth
+- Single session
+- Langue FR dans locale + fichiers de trad
+
+### Single session
+
+- [Laravel multi auth -> session check](https://pusher.com/tutorials/multiple-authentication-guards-laravel#set-up-the-controllers)
+- [Single Session Login in Laravel](https://stackoverflow.com/questions/19510220/single-session-login-in-laravel)
+- [Laravel allow one session per user](https://stackoverflow.com/questions/56437984/laravel-allow-one-session-per-user)
+- [Laravel: Only allowing one session per user at a time](https://stackoverflow.com/questions/27938186/laravel-only-allowing-one-session-per-user-at-a-time)
+- [Recherche Google](https://www.google.com/search?client=firefox-b-d&q=laravel+allow+only+one+auth)
+
 ### Multi Auth infos
 
+- [multi auth laravel 6](https://www.codermen.com/blog/123/how-to-make-multi-auth-in-laravel-6) --> architecture multi construite avec ce tuto
+- [Multiple Authentication in Laravel (Admins + User) / Youtube](https://www.youtube.com/watch?v=RuBO6RATkLs) --> architecture multi basée avec ce tuto
 - [Package laravel/multiauth](https://github.com/bitfumes/laravel-multiauth) --> admin auth + user auth
 - [playlist youtube package multiauth](https://www.youtube.com/playlist?list=PLe30vg_FG4OTO7KbQ6TByyY99AiSw1MDS)
 - [tuto 5.2 multi auth 2 tables - texte](https://www.itsolutionstuff.com/post/laravel-52-multi-auth-example-using-auth-guard-from-scratchexample.html)
@@ -46,4 +71,3 @@
 - [github : code du tuto youtube](https://github.com/DevMarketer/multiauth_tutorial/releases/tag/part_1)
 - [article : change table and guard login](https://medium.com/@nasrulhazim/laravel-using-different-table-and-guard-for-login-bc426d067901)
 - [tuto texte : multi auth](https://scotch.io/@sukelali/how-to-create-multi-table-authentication-in-laravel)
-- [multi auth laravel 6](https://www.codermen.com/blog/123/how-to-make-multi-auth-in-laravel-6)
