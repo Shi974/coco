@@ -45,6 +45,7 @@
   - inscription
   - mot de passe perdu
 - encryption des id fiche dans l'URL
+- BDD : rajouter une note sur l'animal, ex : "a peur des lumières vives (lampe torche), sinon est assez câlin"
 
 ### Fait
 
