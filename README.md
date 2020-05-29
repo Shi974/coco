@@ -24,7 +24,7 @@
 
 - Bulma min CSS
 - créer des seeds
-- créer un layout
+- créer un layout responsive
   - head avec css
   - header
   - footer
@@ -44,6 +44,7 @@
   - dashboards
   - inscription
   - mot de passe perdu
+- encryption des id fiche dans l'URL
 
 ### Fait
 
@@ -51,6 +52,14 @@
 - Multi auth
 - Single session
 - Langue FR dans locale + fichiers de trad
+- AnimalController --resource
+
+### URL Encrypt
+
+- [jenssegers/optimus](https://github.com/jenssegers/optimus) --> package : transform id's to obfuscated integers
+- [laravel/hashids](https://packagist.org/packages/hashids/hashids) --> package
+- [hashids](https://hashids.org/) --> php module : transform id's to random strings
+- [Laravel – How to encrypt ids in URL?](https://codersk.com/laravel-how-to-encrypt-ids-in-url/#:~:text=Method%202%3A%20Using%20The%20inbuilt,value%20using%20a%20decrypt%20helper.)
 
 ### Single session
 

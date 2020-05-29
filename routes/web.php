@@ -17,11 +17,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/fiche/{id}', 'AnimalController@showCard');
+
+// AUTHENTIFICATION
 Auth::routes();
 
 Route::get('/home', 'HomeController@index') -> name('home');
-
-Route::get('/jhlz974', 'VetoController@index') -> name('veto_home');
 
 Route::prefix('veto') -> group(function() {
     Route::get('/login','Auth\VetoLoginController@showLoginForm') -> name('veto.login');
