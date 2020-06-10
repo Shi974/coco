@@ -23,24 +23,21 @@
 ## A faire
 
 - Bulma min CSS
-- créer des seeds
 - créer un layout responsive
   - head avec css
   - header
   - footer
   - main div container
 - créer les pages
-  - fiche animal via scan
-  - dashboard user
-    - mon compte
-    - mes animaux
-  - fiche animal via compte
-  - dashboard véto
-    - mon profil
-    - mes animaux
+  - carnet de santé
+  - modification fiche animal via compte user
+  - modification fiche animal via compte véto
+  - délimiter les modifications et vues possibles p/r compte connecté ==> **POLICIES** --> *wip*
 - modifier les pages
+  - fiche animal via scan
+  - dashboard user (home)
+  - dashboard véto (veto_home)
   - connexion
-  - connexion veto
   - dashboards
   - inscription
   - mot de passe perdu
@@ -54,6 +51,8 @@
 - Single session
 - Langue FR dans locale + fichiers de trad
 - AnimalController --resource
+- créer des seeds
+- Pages : fiche scan, profil user, profil véto, connexion véto
 
 ### URL Encrypt
 
@@ -61,6 +60,10 @@
 - [laravel/hashids](https://packagist.org/packages/hashids/hashids) --> package
 - [hashids](https://hashids.org/) --> php module : transform id's to random strings
 - [Laravel – How to encrypt ids in URL?](https://codersk.com/laravel-how-to-encrypt-ids-in-url/#:~:text=Method%202%3A%20Using%20The%20inbuilt,value%20using%20a%20decrypt%20helper.)
+
+### Laravel Gates
+
+- [Tutoriel Laravel : Gates et Policies - Grafikart.fr // YOUTUBE](https://www.youtube.com/watch?v=U_DoLOi2H0w)
 
 ### Single session
 

@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Animal;
+use Illuminate\Support\Facades\Gate;
+use App\Models\HealthRecord;
 
-class AnimalController extends Controller {
+class HealthRecordController extends Controller {
     /**
      * Display a listing of the resource.
      *
@@ -20,8 +21,7 @@ class AnimalController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         //
     }
 
@@ -45,9 +45,13 @@ class AnimalController extends Controller {
         //
     }
 
-    public function showCard($id) {
-        $animal = Animal::where('id', $id) -> first();
-        return view('fiche', ['animal' => $animal]);
+    // Show le carnet de santé si propriétaire de l'animal
+    // TODO donner autorisation vétérinaire + faire multiple gates
+    // https://laravel.com/docs/7.x/authorization#introduction
+    public function showCarnet($id) {
+        $carnet = HealthRecord::where('id', $id) -> with('animals') -> first();
+        $this -> authorize ('userIsOwner', $carnet); 
+        return view ('auth.carnet_user', ['carnet' => $carnet]);
     }
 
     /**

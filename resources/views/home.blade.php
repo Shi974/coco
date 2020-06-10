@@ -31,7 +31,7 @@
 
                     <hr/>
 
-                    <h2>Mes animaux</h2>
+                    <h2><img src="https://img.icons8.com/ios/48/000000/cat-footprint.png"/> Mes animaux</h2>
 
                     @foreach (Auth::user() -> animals as $item)
                     @if ($item -> type == 'chien') <img src="https://img.icons8.com/emoji/50/000000/dog--v2.png"/>      
@@ -48,8 +48,8 @@
                     @if ($item -> veterinary -> phone_practice_plus == !null)
                     Téléphone : <a href="tel:+262{{ $item -> veterinary -> phone_practice_plus }}">{{ $item -> veterinary -> phone_practice_plus }}</a> <br/>
                     @endif
-                    <button class="btn btn-primary m-auto">Modifier infos animal</button>
-                    <button class="btn btn-success m-auto"><img class="btn-icon" src="https://img.icons8.com/color/48/000000/health-book.png"/> Voir carnet de santé</button> <br/>
+                    <button class="btn btn-primary m-auto">Modifier vétérinaire</button>
+                    <a href="/carnet/{{ $item -> id }}"><button class="btn btn-success m-auto"><img class="btn-icon" src="https://img.icons8.com/color/48/000000/health-book.png"/> Voir carnet de santé</button></a> <br/>
                     @endforeach
                 </div>
             </div>

@@ -1,5 +1,9 @@
 <?php
 
+// setlocale (LC_TIME, 'fr_FR.utf8','fra');
+setlocale(LC_TIME, "fr_FR");
+date_default_timezone_set('Indian/Reunion');
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +28,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index') -> name('home');
 
+Route::get('/carnet/{id}', 'HealthRecordController@showCarnet');
+
+// VETO
 Route::prefix('veto') -> group(function() {
     Route::get('/login','Auth\VetoLoginController@showLoginForm') -> name('veto.login');
     Route::post('/login', 'Auth\VetoLoginController@login') -> name('veto.login.submit');

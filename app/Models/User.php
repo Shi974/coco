@@ -81,6 +81,11 @@ class User extends Authenticatable {
     ];
 
 	public function animals() {
-		return $this->hasMany(Animal::class, 'users_id');
+		return $this -> hasMany(Animal::class, 'users_id');
+	}
+
+	// Fonction test pour l'authorization
+	public function isOwner () {
+		return true;
 	}
 }
