@@ -27,7 +27,7 @@
                     @if (Auth::user()-> phone_plus == !null)
                     Téléphone : {{ Auth::user()-> phone_plus }} <br/>
                     @endif
-                    <button class="btn btn-primary m-auto">Modifier</button>
+                    <button class="btn btn-primary m-auto" href="/user/{{Auth::user()-> id}}/modifier">Modifier</button>
 
                     <hr/>
 

@@ -16,16 +16,16 @@
 
                     <h2><img src="https://img.icons8.com/color/50/000000/doctor-male.png"/> Mes infos</h2>
 
-                    Vous êtes connecté en tant que <b>{{ Auth::user()-> username }}</b>.<br/>
-                    Prénom : {{ Auth::user()-> first_name }} <br/>
-                    Nom : {{ Auth::user()-> last_name }} <br/>
-                    Adresse mail : {{ Auth::user()-> email }} <br/>
-                    Adresse cabinet : {{ Auth::user()-> address_practice }} @if (Auth::user()-> address_practice_plus == !null) 
-                    - {{ Auth::user()-> address_practice_plus }} - @endif {{ Auth::user()-> postal_code_practice }} 
-                    {{ Auth::user()-> city_practice }} ({{ Auth::user()-> country_practice }})<br/>
-                    Téléphone : {{ Auth::user()-> phone_practice }} <br/>
-                    @if (Auth::user()-> phone_practice_plus == !null)
-                    Téléphone : {{ Auth::user()-> phone_practice_plus }} <br/>
+                    Vous êtes connecté en tant que <b>{{ Auth::user() -> username }}</b>.<br/>
+                    Prénom : {{ Auth::user() -> first_name }} <br/>
+                    Nom : {{ Auth::user() -> last_name }} <br/>
+                    Adresse mail : {{ Auth::user() -> email }} <br/>
+                    Adresse cabinet : {{ Auth::user() -> address_practice }} @if (Auth::user() -> address_practice_plus == !null) 
+                    - {{ Auth::user() -> address_practice_plus }} - @endif {{ Auth::user() -> postal_code_practice }} 
+                    {{ Auth::user() -> city_practice }} ({{ Auth::user() -> country_practice }})<br/>
+                    Téléphone : {{ Auth::user() -> phone_practice }} <br/>
+                    @if (Auth::user() -> phone_practice_plus == !null)
+                    Téléphone : {{ Auth::user() -> phone_practice_plus }} <br/>
                     @endif
                     <button class="btn btn-primary m-auto">Modifier</button>
 

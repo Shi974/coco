@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use App\Models\HealthRecord;
+use Auth;
 
 class HealthRecordController extends Controller {
     /**
@@ -50,7 +51,24 @@ class HealthRecordController extends Controller {
     // https://laravel.com/docs/7.x/authorization#introduction
     public function showCarnet($id) {
         $carnet = HealthRecord::where('id', $id) -> with('animals') -> first();
-        $this -> authorize ('userIsOwner', $carnet); 
+        $url = str_replace(url('/'), '', url()->previous());
+        if ($url == "/home") {
+            $this -> authorize ('userIsOwner', $carnet); 
+            return view ('auth.carnet_user', ['carnet' => $carnet]);
+        } else if ($url == "/veto") {
+            $veto_view = true;
+            //TODO mettre un gate
+            // $veto = Auth::guard('veto') -> user();
+            // $this -> authorize ('vetIsAllowed', [$veto, $carnet]); 
+            return view ('auth.carnet_user', ['carnet' => $carnet, 'veto_view' => $veto_view]);
+        } else {
+            return view ('errors.403');
+        }
+    }
+
+    public function showCarnet_veto ($id) {
+        $carnet = HealthRecord::where('id', $id) -> with('animals') -> first();
+        $this -> authorize ('vetIsAllowed', $carnet); 
         return view ('auth.carnet_user', ['carnet' => $carnet]);
     }
 

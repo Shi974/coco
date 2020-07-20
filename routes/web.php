@@ -26,8 +26,11 @@ Route::get('/fiche/{id}', 'AnimalController@showCard');
 // AUTHENTIFICATION
 Auth::routes();
 
+// USER
 Route::get('/home', 'HomeController@index') -> name('home');
+// Route::get('/update') -> ;
 
+// CARNET DE SANTE
 Route::get('/carnet/{id}', 'HealthRecordController@showCarnet');
 
 // VETO
@@ -36,4 +39,5 @@ Route::prefix('veto') -> group(function() {
     Route::post('/login', 'Auth\VetoLoginController@login') -> name('veto.login.submit');
     Route::get('/logout', 'Auth\VetoLoginController@logout') -> name('veto.logout');
     Route::get('/', 'Auth\VetoController@index') -> name('veto.dashboard');
+    // Route::get('/carnet/{id}', 'HealthRecordController@showCarnet_veto');
 });

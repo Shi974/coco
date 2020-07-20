@@ -21,7 +21,7 @@
                 <p>Race : {{ $carnet -> animals[0] -> breed }}</p>
                 <ul>
                     @if ($carnet -> vaccine_info == !null)
-                    <li>{{ $carnet -> vaccine_info }}</li>
+                    <li>{!! $carnet -> vaccine_info !!}</li>
                     @endif
                     @if ($carnet -> disease_info == !null)
                     <li>{{ $carnet -> disease_info }}</li>

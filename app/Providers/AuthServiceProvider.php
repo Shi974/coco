@@ -28,6 +28,15 @@ class AuthServiceProvider extends ServiceProvider {
             return $user -> id == $carnet -> animals[0] -> users_id;
         });
 
-        // TODO faire la même chose avec le vétérinaire
+        Gate::define('vetIsAllowed', function ($user, $carnet) {
+            // $user = Auth::guard('veto') -> user();
+            return $user -> id == $carnet -> animals[0] -> veterinary_id;
+            // FIXME fixer la gate vétérinaire ; ne semble pas récupérer l'user
+            // "ability" => "vetIsAllowed"
+            // "result" => null
+            // "user" => null
+            // "arguments" => "[0 => Object(App\Models\Veterinary), 1 => Object(App\Models\HealthRecord)]"
+        });
+
     }
 }
