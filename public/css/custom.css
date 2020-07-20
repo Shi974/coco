@@ -4,6 +4,25 @@
     margin: 0 !important;
 }
 
+#welcome .navbar {
+    padding: 0 !important;
+}
+
 .btn-icon {
     height: 20px !important;
+}
+
+@media all and (max-width: 768px) {
+    #header {
+        padding: 10px;
+    }
+
+    .nav-menu {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .ml-auto {
+        margin-left: 15px !important;
+    }
 }
