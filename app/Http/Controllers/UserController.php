@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Animal;
-use App\Mail\Mail_geolocalisation;
-use Illuminate\Support\Facades\Mail;
+use App\Models\User;
 
-class AnimalController extends Controller {
+class UserController extends Controller {
     /**
      * Display a listing of the resource.
      *
@@ -46,11 +44,6 @@ class AnimalController extends Controller {
         //
     }
 
-    public function showCard($id) {
-        $animal = Animal::where('id', $id) -> first();
-        return view('fiche', ['animal' => $animal]);
-    }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -58,7 +51,8 @@ class AnimalController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        //
+        $user = User::where('id', $id) -> first();
+        return view('auth.profil_update', ['user' => $user]);
     }
 
     /**
@@ -69,7 +63,29 @@ class AnimalController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
-        //
+        $user = $request -> all ();
+
+        $request -> validate ([
+            "email" => 'required|email',
+            "phone" => 'required|min:10|max:10',
+            "phone_plus" => 'nullable|min:10|max:10',
+            "address" => 'required|min:5|max:255',
+            "address_plus" => 'nullable|min:5|max:255',
+            "postal_code" => 'required|min:5|max:5',
+            "city" => 'required|min:3|max:50'
+        ]);
+         
+        User::where('id', $id) -> update ([
+            'email' => $request -> email,
+            'phone' => $request -> phone,
+            'phone_plus' => $request -> phone_plus,
+            'address' => $request -> address,
+            'address_plus' => $request -> address_plus,
+            'postal_code' => $request -> postal_code,
+            'city' => $request -> city
+        ]);
+ 
+        return redirect() -> route('home') -> with ('message', "Informations mises à jour.");
     }
 
     /**
@@ -80,29 +96,5 @@ class AnimalController extends Controller {
      */
     public function destroy($id) {
         //
-    }
-
-    public function sendLocation (Request $request) {
-        $request -> validate([
-            'latitude' => 'required',
-            'longitude' => 'required',
-            'id' => 'required|digits_between:1,11',
-            'username' => 'required',
-            'name' => 'required',
-        ]);
-    
-        $data = [
-            'latitude' => $request -> latitude,
-            'longitude' => $request -> longitude,
-            'id' => $request -> id,
-            'username' => $request -> username,
-            'name' => $request -> first_name,
-        ];
-
-        $proprio = Animal::where('id', $request -> id) -> first();
-        $mail = $proprio -> user -> email;
-
-        Mail::to ($mail) -> send (new Mail_geolocalisation ($data));
-        return view ('confirmation_envoi');
     }
 }

@@ -23,12 +23,17 @@ Route::get('/', function () {
 
 Route::get('/fiche/{id}', 'AnimalController@showCard');
 
+Route::post('/geolocaliser_animal', 'AnimalController@sendLocation');
+
 // AUTHENTIFICATION
 Auth::routes();
 
 // USER
-Route::get('/home', 'HomeController@index') -> name('home');
-// Route::get('/update') -> ;
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/home', 'HomeController@index') -> name('home');
+    Route::get('/user/modifier/{id}', 'UserController@edit');
+    Route::patch('/user/update/{id}', 'UserController@update');
+});
 
 // CARNET DE SANTE
 Route::get('/carnet/{id}', 'HealthRecordController@showCarnet');

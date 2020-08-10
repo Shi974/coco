@@ -4,9 +4,14 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            @if (Session::has('message'))
+            <div class="m-3">
+                <p class="alert alert-success" style="text-align: center; font-weight:bold">{{ Session::get('message') }}</p>
+            </div>
+            @endif
+
             <div class="card">
                 <div class="card-header">Panneau de contrôle du profil</div>
-
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -27,7 +32,7 @@
                     @if (Auth::user()-> phone_plus == !null)
                     Téléphone : {{ Auth::user()-> phone_plus }} <br/>
                     @endif
-                    <button class="btn btn-primary m-auto" href="/user/{{Auth::user()-> id}}/modifier">Modifier</button>
+                    <a class="btn btn-primary m-auto" href="/user/modifier/{{ Auth::user()-> id }}">Modifier</a>
 
                     <hr/>
 
@@ -49,10 +54,25 @@
                     Téléphone : <a href="tel:+262{{ $item -> veterinary -> phone_practice_plus }}">{{ $item -> veterinary -> phone_practice_plus }}</a> <br/>
                     @endif
                     <button class="btn btn-primary m-auto">Modifier vétérinaire</button>
-                    <a href="/carnet/{{ $item -> id }}"><button class="btn btn-success m-auto"><img class="btn-icon" src="https://img.icons8.com/color/48/000000/health-book.png"/> Voir carnet de santé</button></a> <br/>
+                    <a href="/carnet/{{ $item -> id }}">
+                        <button class="btn btn-success m-auto">
+                            <img class="btn-icon" src="https://img.icons8.com/color/48/000000/health-book.png"/> 
+                            Voir carnet de santé
+                        </button>
+                    </a>
+                    <br/>
                     @endforeach
                 </div>
             </div>
+
+            <div class="alert alert-warning font-weight-bold rounded mt-2">
+                <img class="btn-icon" src="https://img.icons8.com/fluent/48/000000/box-important.png"/>
+                Un soucis avec l'application ou les données ?
+            </div>
+            <div class="d-flex justify-content-center">
+                <button class="btn btn-warning m-1 ">Contacter l'administrateur</button>
+            </div>
+
         </div>
     </div>
 </div>
