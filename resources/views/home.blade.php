@@ -12,7 +12,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    {{-- MESSAGE D'ERREUR SI LA RECHERCHE NE RETOURNE RIEN --}}
+                    {{-- MESSAGE SESSION FLASH --}}
                     @if (Session::has('message'))
                     <div class="col-10 offset-1 d-flex flex-column">
                         <p class="alert alert-success mb-2" style="text-align: center; font-weight:bold">
@@ -21,21 +21,26 @@
                     </div>
                     @endif
 
-                    <h2><img src="https://img.icons8.com/ios/50/000000/name.png"/> Mes infos</h2>
-                    {{-- //TODO faire un collapse sur mes infos --}}
+                    <a class="btn d-flex justify-content-between p-0 dropdown-icon" data-toggle="collapse" href="#mes_infos" 
+                        role="button" aria-expanded="false" aria-controls="mes_infos">
+                        <h2><img src="https://img.icons8.com/ios/50/000000/name.png"/> Mes infos</h2>
+                        <i class="fas fa-caret-down h2 align-self-center"></i>
+                    </a>
 
-                    Vous êtes connecté en tant que <b>{{ Auth::user()-> username }}</b>.<br/>
-                    Prénom : {{ Auth::user()-> first_name }} <br/>
-                    Nom : {{ Auth::user()-> last_name }} <br/>
-                    Adresse mail : {{ Auth::user()-> email }} <br/>
-                    Adresse : {{ Auth::user()-> address }} @if (Auth::user()-> address_plus == !null) 
-                    - {{ Auth::user()-> address_plus }} - @endif {{ Auth::user()-> postal_code }} 
-                    {{ Auth::user()-> city }} ({{ Auth::user()-> country }})<br/>
-                    Téléphone : {{ Auth::user()-> phone }} <br/>
-                    @if (Auth::user()-> phone_plus == !null)
-                    Téléphone : {{ Auth::user()-> phone_plus }} <br/>
-                    @endif
-                    <a class="btn btn-primary m-auto" href="/user/modifier/{{ Auth::user()-> id }}">Modifier</a>
+                    <div class="collapse" id="mes_infos">
+                        Vous êtes connecté en tant que <b>{{ Auth::user()-> username }}</b>.<br/>
+                        Prénom : {{ Auth::user()-> first_name }} <br/>
+                        Nom : {{ Auth::user()-> last_name }} <br/>
+                        Adresse mail : {{ Auth::user()-> email }} <br/>
+                        Adresse : {{ Auth::user()-> address }} @if (Auth::user()-> address_plus == !null) 
+                        - {{ Auth::user()-> address_plus }} - @endif {{ Auth::user()-> postal_code }} 
+                        {{ Auth::user()-> city }} ({{ Auth::user()-> country }})<br/>
+                        Téléphone : {{ Auth::user()-> phone }} <br/>
+                        @if (Auth::user()-> phone_plus == !null)
+                        Téléphone : {{ Auth::user()-> phone_plus }} <br/>
+                        @endif
+                        <a class="btn btn-primary m-auto" href="/user/modifier/{{ Auth::user()-> id }}">Modifier</a>
+                    </div>
 
                     <hr/>
 

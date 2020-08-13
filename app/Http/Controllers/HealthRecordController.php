@@ -155,7 +155,28 @@ class HealthRecordController extends Controller {
         $treatment -> health_records_id = $id;
         $treatment -> save();
 
-        //TODO rajouter message flash
         return redirect("/home") -> with ('message', "Soin ajouté <i class='fas fa-check-circle ml-1'></i>");
+    }
+
+       /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroySoin($id) {
+        Treatment::where('id', $id) -> delete();
+
+        return redirect("/home") -> with ('message', "Soin supprimé <i class='fas fa-check-circle ml-1'></i>");
+    }
+
+    public function editSoin($carnet_id, $id) {
+        $soin = Treatment::find($id);
+        $date = date('m/d/y', $soin -> date);
+        $time = date('H:m:s A',$soin -> date);
+        // TODO explode date et time pour remettre dans l'input
+        dd($date, $time);
+
+        return view('auth.soin_edit', ['soin' => $soin, 'carnet_id' => $carnet_id, 'id' => $id]); 
     }
 }

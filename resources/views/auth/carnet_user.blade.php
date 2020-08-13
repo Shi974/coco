@@ -26,12 +26,18 @@
                     </div>
                     <ul id="treatments">
                         @foreach ($carnet -> treatments -> sortByDesc('date') as $item)
-                        <li class="m-1"><a href="" class="btn btn-primary p-1"><i class="fas fa-pencil-alt"></i></a> <a href="" class="btn btn-secondary p-1"><i class="fas fa-trash-alt"></i></a> 
-                        @if ($item -> sante_soin == "santé")<img src="https://img.icons8.com/bubbles/50/000000/heart-with-pulse.png"/>
-                        @else<img src="https://img.icons8.com/bubbles/50/000000/surgical-scissors.png"/>@endif 
-                        <b>{{ $item -> type }}</b> @if ($item -> rappel === 'oui') <i class="fas fa-bell text-danger"></i> @endif 
-                        <i class="fas fa-calendar-alt text-success"></i> {{ utf8_encode(strftime('%d %B %Y - %Hh%M', strtotime($item -> date))) }} @if ($item -> effectue_par != null) 
-                        effectué par {{ $item -> effectue_par}} @endif </li>
+                        <li class="m-1">
+                            <a href="/carnet/{{ $carnet -> id }}/editer/{{ $item -> id }}" class="btn btn-primary p-1"><i class="fas fa-pencil-alt"></i></a> <a 
+                                href="/carnet/supprimer/{{ $item -> id }}" class="btn btn-secondary p-1"
+                                onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce soin ?')"><i 
+                                class="fas fa-trash-alt"></i>
+                            </a> 
+                            @if ($item -> sante_soin == "santé")<img src="https://img.icons8.com/bubbles/50/000000/heart-with-pulse.png"/>
+                            @else<img src="https://img.icons8.com/bubbles/50/000000/surgical-scissors.png"/>@endif 
+                            <b>{{ $item -> type }}</b> @if ($item -> rappel === 'oui') <i class="fas fa-bell text-danger"></i> @endif 
+                            <i class="fas fa-calendar-alt text-success"></i> {{ utf8_encode(strftime('%d %B %Y - %Hh%M', strtotime($item -> date))) }} @if ($item -> effectue_par != null) 
+                            effectué par {{ $item -> effectue_par}} @endif
+                        </li>
                         @endforeach
                     </ul>
                     <a class="d-flex justify-content-center btn" href="tel:+262{{$carnet -> animals[0] -> veterinary -> phone_practice }}">

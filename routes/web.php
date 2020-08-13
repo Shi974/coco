@@ -36,6 +36,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/carnet/{id}', 'HealthRecordController@showCarnet') -> name ('carnet');
     Route::get('/carnet/{id}/nouveau_soin', 'HealthRecordController@addSoin');
     Route::post('/carnet/{id}/ajouter_soin', 'HealthRecordController@storeSoin');
+    Route::get('/carnet/supprimer/{id}', 'HealthRecordController@destroySoin');
+    Route::get('/carnet/{carnet_id}/editer/{id}', 'HealthRecordController@editSoin');
 });
 
 // CARNET DE SANTE
