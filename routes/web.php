@@ -33,10 +33,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'HomeController@index') -> name('home');
     Route::get('/user/modifier/{id}', 'UserController@edit');
     Route::patch('/user/update/{id}', 'UserController@update');
+    Route::get('/carnet/{id}', 'HealthRecordController@showCarnet') -> name ('carnet');
+    Route::get('/carnet/{id}/nouveau_soin', 'HealthRecordController@addSoin');
+    Route::post('/carnet/{id}/ajouter_soin', 'HealthRecordController@storeSoin');
 });
 
 // CARNET DE SANTE
-Route::get('/carnet/{id}', 'HealthRecordController@showCarnet');
 
 // VETO
 Route::prefix('veto') -> group(function() {

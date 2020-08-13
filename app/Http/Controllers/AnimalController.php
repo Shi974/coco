@@ -102,6 +102,7 @@ class AnimalController extends Controller {
         $proprio = Animal::where('id', $request -> id) -> first();
         $mail = $proprio -> user -> email;
 
+        //TODO tester mail
         Mail::to ($mail) -> send (new Mail_geolocalisation ($data));
         return view ('confirmation_envoi');
     }

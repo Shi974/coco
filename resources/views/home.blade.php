@@ -4,12 +4,6 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            @if (Session::has('message'))
-            <div class="m-3">
-                <p class="alert alert-success" style="text-align: center; font-weight:bold">{{ Session::get('message') }}</p>
-            </div>
-            @endif
-
             <div class="card">
                 <div class="card-header">Panneau de contrôle du profil</div>
                 <div class="card-body">
@@ -18,8 +12,17 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    {{-- MESSAGE D'ERREUR SI LA RECHERCHE NE RETOURNE RIEN --}}
+                    @if (Session::has('message'))
+                    <div class="col-10 offset-1 d-flex flex-column">
+                        <p class="alert alert-success mb-2" style="text-align: center; font-weight:bold">
+                            {!! Session::get('message') !!}
+                        </p>
+                    </div>
+                    @endif
 
                     <h2><img src="https://img.icons8.com/ios/50/000000/name.png"/> Mes infos</h2>
+                    {{-- //TODO faire un collapse sur mes infos --}}
 
                     Vous êtes connecté en tant que <b>{{ Auth::user()-> username }}</b>.<br/>
                     Prénom : {{ Auth::user()-> first_name }} <br/>

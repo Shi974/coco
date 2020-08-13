@@ -12,6 +12,12 @@
     height: 20px !important;
 }
 
+/* CARNET DE SANTE */
+#treatments {
+    list-style-type: none;
+    padding-left: 0;
+}
+
 @media all and (max-width: 768px) {
     #header {
         padding: 10px;
