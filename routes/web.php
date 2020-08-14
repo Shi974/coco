@@ -53,3 +53,7 @@ Route::prefix('veto') -> group(function() {
     Route::get('/', 'Auth\VetoController@index') -> name('veto.dashboard');
     // Route::get('/carnet/{id}', 'HealthRecordController@showCarnet_veto');
 });
+
+Route::get('/test', function () {
+    return view ('confirmation_envoi');
+});

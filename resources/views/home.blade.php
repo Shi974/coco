@@ -47,8 +47,7 @@
                     <h2><img src="https://img.icons8.com/ios/48/000000/cat-footprint.png"/> Mes animaux</h2>
 
                     @foreach (Auth::user() -> animals as $item)
-                    @if ($item -> type == 'chien') <img src="https://img.icons8.com/emoji/50/000000/dog--v2.png"/>      
-                    @else <img src="https://img.icons8.com/emoji/48/000000/cat-emoji.png"/> @endif
+                    <img class="icone_animal" @if ($item -> type == 'chien') src="/img/dog.png" @else src="/img/cat.png" @endif />
                     Prénom : {{ $item -> first_name }} <br/>
                     Date de naissance : {{ $item -> birth_date -> format('d/m/Y') }} <br/>
                     Race : {{ $item -> breed }} <br/>

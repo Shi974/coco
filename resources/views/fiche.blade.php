@@ -12,15 +12,16 @@
                 <div class="card-body">
                     <h3 class="d-flex flex-row justify-content-around">
                         {{ $animal -> first_name }}
-                        <img src="https://img.icons8.com/emoji/50/000000/dog--v2.png"/>
+                        <img class="icone_animal" @if ($animal -> type == 'chien') src="/img/dog.png" @else src="/img/cat.png" @endif />
                     </h3>
                     Race : {{ $animal -> breed }} <br/>
                     <hr/>
                     Propriétaire : {{ $animal -> user -> first_name }} <br/>
                     <hr/>
                     <ul>
-                        <li>Bobby est très câlin mais a peur des bruits stridents et des lumières vives.</li>
+                        <li>{{ $animal -> first_name }} est très câlin mais a peur des bruits stridents et des lumières vives.</li>
                         <li>[Info 1]</li>
+                        <li>[Info 2]</li>
                     </ul>
                     <hr/>
                     <div class="d-flex flex-column text-center">

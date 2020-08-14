@@ -110,13 +110,12 @@ class AnimalController extends Controller {
             'longitude' => $request -> longitude,
             'id' => $request -> id,
             'username' => $request -> username,
-            'name' => $request -> first_name,
+            'name' => $request -> name,
         ];
 
         $proprio = Animal::where('id', $request -> id) -> first();
         $mail = $proprio -> user -> email;
 
-        //TODO tester mail
         Mail::to ($mail) -> send (new Mail_geolocalisation ($data));
         return view ('confirmation_envoi');
     }

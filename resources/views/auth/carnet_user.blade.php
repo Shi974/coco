@@ -12,8 +12,7 @@
                 <div class="card-header">{{ $carnet -> animals[0] -> first_name }}</div>
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
-                        <h3>@if ($carnet -> animals[0] -> type == 'chien') <img src="https://img.icons8.com/emoji/50/000000/dog--v2.png"/>      
-                            @else <img src="https://img.icons8.com/emoji/48/000000/cat-emoji.png"/> @endif</h3>
+                        <h3><img class="icone_animal" @if ($carnet -> animals[0] -> type == 'chien') src="/img/dog.png" @else src="/img/cat.png" @endif /></h3>
                         <div class="d-flex flex-column">
                             <span>Né le : {{ $carnet -> animals[0] -> birth_date -> format ('d/m/Y') }}</span>
                             <span>Race : {{ $carnet -> animals[0] -> breed }}</span>
