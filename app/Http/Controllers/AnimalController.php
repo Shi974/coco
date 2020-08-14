@@ -73,8 +73,17 @@ class AnimalController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id) {
-        //
+    public function updateVeto(Request $request, $id) {
+        $request -> validate([
+            'veto_id' => 'required|integer',
+        ]);
+
+        $animal = Animal::where('id', $id) -> first();
+        $animal -> veterinary_id = $request -> veto_id;
+
+        $animal -> update();
+        return redirect("/home") -> with ('message', "Cabinet vétérinaire mis à jour <i class='fas fa-check-circle ml-1'></i>");
+
     }
 
     /**
