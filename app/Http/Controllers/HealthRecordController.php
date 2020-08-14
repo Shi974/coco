@@ -85,6 +85,9 @@ class HealthRecordController extends Controller {
             // $veto = Auth::guard('veto') -> user();
             // $this -> authorize ('vetIsAllowed', [$veto, $carnet]); 
             return view ('auth.carnet_user', ['carnet' => $carnet, 'veto_view' => $veto_view, 'appointment' => $appointment]);
+        } else if (strpos($url, "carnet")) {
+            $this -> authorize ('userIsOwner', $carnet); 
+            return view ('auth.carnet_user', ['carnet' => $carnet, 'appointment' => $appointment]);
         } else {
             return view ('errors.403');
         }
@@ -133,7 +136,6 @@ class HealthRecordController extends Controller {
     }
 
     public function storeSoin (Request $request, $id) {
-        $treatment = new Treatment;
         $request -> validate([
             "sante_soin" => "required|string|max:5",
             "type" => "required|string|max:255",
@@ -144,6 +146,7 @@ class HealthRecordController extends Controller {
             "rappel" => "nullable|string|max:3",
         ]);
 
+        $treatment = new Treatment;
         $treatment -> sante_soin = $request -> sante_soin;
         $treatment -> type = $request -> type;
         $treatment -> date = $request -> date;
@@ -172,11 +175,32 @@ class HealthRecordController extends Controller {
 
     public function editSoin($carnet_id, $id) {
         $soin = Treatment::find($id);
-        $date = date('m/d/y', $soin -> date);
-        $time = date('H:m:s A',$soin -> date);
-        // TODO explode date et time pour remettre dans l'input
-        dd($date, $time);
+        $date_soin = date('Y-m-d', strtotime($soin -> date));
+        $heure_soin = date('H:i', strtotime($soin -> date));
+        $date = $date_soin . 'T' . $heure_soin;
 
-        return view('auth.soin_edit', ['soin' => $soin, 'carnet_id' => $carnet_id, 'id' => $id]); 
+        return view('auth.soin_edit', ['soin' => $soin, 'carnet_id' => $carnet_id, 'id' => $id, 'date' => $date]); 
+    }
+
+    public function updateSoin (Request $request, $carnet_id, $id) {
+        $request -> validate([
+            "type" => "required|string|max:255",
+            "date" => "required",            
+            "produit_nom" => "nullable|string|max:255",
+            "effectue_par" => "nullable|string|max:255",
+            "remarques" => "nullable|string|max:255",
+            "rappel" => "nullable|string|max:3",
+        ]);
+
+        $treatment = Treatment::where('id', $id) -> first();
+        $treatment -> type = $request -> type;
+        $treatment -> date = $request -> date;
+        $treatment -> nom_produit = $request -> produit_nom;
+        $treatment -> effectue_par = $request -> effectue_par;
+        $treatment -> remarques = $request -> remarques;
+        $treatment -> rappel = $request -> rappel;
+
+        $treatment -> update();
+        return redirect("/home") -> with ('message', "Soin mis à jour <i class='fas fa-check-circle ml-1'></i>");
     }
 }

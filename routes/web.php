@@ -38,6 +38,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/carnet/{id}/ajouter_soin', 'HealthRecordController@storeSoin');
     Route::get('/carnet/supprimer/{id}', 'HealthRecordController@destroySoin');
     Route::get('/carnet/{carnet_id}/editer/{id}', 'HealthRecordController@editSoin');
+    Route::POST('/carnet/{carnet_id}/update/{id}', 'HealthRecordController@updateSoin');
+    Route::get('/animal/{id}/editer_veterinaire', 'AnimalController@editVeto');
 });
 
 // CARNET DE SANTE

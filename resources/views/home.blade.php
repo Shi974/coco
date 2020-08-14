@@ -61,7 +61,9 @@
                     @if ($item -> veterinary -> phone_practice_plus == !null)
                     Téléphone : <a href="tel:+262{{ $item -> veterinary -> phone_practice_plus }}">{{ $item -> veterinary -> phone_practice_plus }}</a> <br/>
                     @endif
-                    <button class="btn btn-primary m-auto">Modifier vétérinaire</button>
+                    <a href="/animal/{{ $item -> id }}/editer_veterinaire"><button class="btn btn-primary m-auto">
+                        Modifier vétérinaire
+                    </button></a>
                     <a href="/carnet/{{ $item -> id }}">
                         <button class="btn btn-success m-auto">
                             <img class="btn-icon" src="https://img.icons8.com/color/48/000000/health-book.png"/> 

@@ -55,7 +55,7 @@
                                     Date
                                 </label>
                                 <input type="datetime-local" class="form-control @error('date') is-invalid @enderror" 
-                                id="date" name="date" value="{{ date("c", strtotime($soin -> date)) }}" required />
+                                id="date" name="date" value="{{ $date }}" required />
                                 @error ('date')
                                     <div class="alert alert-danger text-center" role="alert">
                                     <strong>{{ $errors -> first('date') }}</strong>
@@ -77,10 +77,10 @@
                             <div class="form-group">
                                 <label for="effectue_par">Effectué par</label>
                                 <select class="form-control @error('effectue_par') is-invalid @enderror" id="effectue_par" name="effectue_par">
-                                    <option value="" selected disabled>Choisir</option>
-                                    <option value="propriétaire">propriétaire</option>
-                                    <option value="vétérinaire">vétérinaire</option>
-                                    <option value="toiletteur">toiletteur</option>
+                                    <option @if ($soin -> effectue_par == null) selected @endif value="" disabled>Choisir</option>
+                                    <option @if ($soin -> effectue_par == 'propriétaire') selected @endif value="propriétaire">propriétaire</option>
+                                    <option @if ($soin -> effectue_par == 'vétérinaire') selected @endif value="vétérinaire">vétérinaire</option>
+                                    <option @if ($soin -> effectue_par == 'toiletteur') selected @endif value="toiletteur">toiletteur</option>
                                 </select>
                                 @error ('effectue_par')
                                     <div class="alert alert-danger text-center" role="alert">
@@ -93,7 +93,7 @@
                                     Remarques
                                 </label>
                                 <input type="text" class="form-control @error('remarques') is-invalid @enderror" id="remarques" 
-                                name="remarques" value="{{ old('remarques') }}" />
+                                name="remarques" value="{{ $soin -> remarques }}" />
                                 @error ('remarques')
                                     <div class="alert alert-danger text-center" role="alert">
                                     <strong>{{ $errors -> first('remarques') }}</strong>
@@ -102,7 +102,8 @@
                             </div>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="rappel" value="oui" /> Envoyer un rappel ?
+                                    <input type="checkbox" name="rappel" value="oui" 
+                                    @if ($soin -> rappel == 'oui') checked @endif/> Envoyer un rappel ?
                                 </label>
                             </div> 
                             <button type="submit" class="btn btn-primary">

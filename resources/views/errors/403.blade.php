@@ -17,5 +17,11 @@
         <a href="/"><button type="button" class="btn btn-primary">Retourner à l'accueil</button></a>
     </div>
 
+    @auth
+    <div class="justify-content-center mt-2">
+        <a href="/home"><button type="button" class="btn btn-success">Retourner au profil</button></a>
+    </div>
+    @endauth
+
 </div>
 @endsection

@@ -85,7 +85,6 @@
                 // $("#geoloc_error").html("Votre navigateur ne supporte pas la géolocalisation. Veuillez sélectionner une zone.")
             }
         });
-        // TODO 
         function showLocation(position) {
             var latitude = position.coords.latitude;
             var longitude = position.coords.longitude;

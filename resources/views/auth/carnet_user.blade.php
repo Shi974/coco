@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <a href="{{ url() -> previous() }}" class="btn">
+            <a href="{{ url('/home') }}" class="btn">
                 <img alt="Retour page précédente" src="https://img.icons8.com/metro/50/000000/long-arrow-left.png"/> Retour profil
             </a>
             <h2>Carnet de santé</h2>
@@ -21,6 +21,11 @@
                     <h4>
                         Prochain RDV : @if ($appointment != null) {{ utf8_encode(strftime('%d %B %Y - %Hh%M', strtotime($appointment))) }} @else pas de RDV prévu @endif
                     </h4>
+                    <a class="d-flex justify-content-center btn" href="tel:+262{{$carnet -> animals[0] -> veterinary -> phone_practice }}">
+                        <button class="btn btn-warning m-auto">
+                            <i class="fas fa-user-md"></i> Appeler vétérinaire
+                        </button>
+                    </a>
                     <div class="d-flex justify-content-center">
                         <a class="btn btn-success text-center" href="/carnet/{{ $carnet -> id }}/nouveau_soin"><i class="fas fa-calendar-plus"></i> Ajouter</a>
                     </div>
@@ -40,11 +45,13 @@
                         </li>
                         @endforeach
                     </ul>
+                    @if (count($carnet -> treatments) > 5)
                     <a class="d-flex justify-content-center btn" href="tel:+262{{$carnet -> animals[0] -> veterinary -> phone_practice }}">
                         <button class="btn btn-warning m-auto">
                             <i class="fas fa-user-md"></i> Appeler vétérinaire
                         </button>
                     </a>
+                    @endif
                 </div>
             </div>
         </div>

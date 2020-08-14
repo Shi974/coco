@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Animal;
+use App\Models\Veterinary;
 use App\Mail\Mail_geolocalisation;
 use Illuminate\Support\Facades\Mail;
 
@@ -57,8 +58,12 @@ class AnimalController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) {
-        //
+    public function editVeto($id) {
+        $animal = Animal::find($id);
+        $veto = Veterinary::all();
+
+        return view('auth.veto_edit', ['animal' => $animal, 'veto' => $veto]); 
+
     }
 
     /**
