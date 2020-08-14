@@ -12,7 +12,8 @@
                 <div class="card-header">{{ $carnet -> animals[0] -> first_name }}</div>
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
-                        <h3><img src="https://img.icons8.com/emoji/50/000000/dog--v2.png"/></h3>
+                        <h3>@if ($carnet -> animals[0] -> type == 'chien') <img src="https://img.icons8.com/emoji/50/000000/dog--v2.png"/>      
+                            @else <img src="https://img.icons8.com/emoji/48/000000/cat-emoji.png"/> @endif</h3>
                         <div class="d-flex flex-column">
                             <span>Né le : {{ $carnet -> animals[0] -> birth_date -> format ('d/m/Y') }}</span>
                             <span>Race : {{ $carnet -> animals[0] -> breed }}</span>
@@ -31,7 +32,7 @@
                     </div>
                     <ul id="treatments">
                         @foreach ($carnet -> treatments -> sortByDesc('date') as $item)
-                        <li class="m-1">
+                        <li class="m-1" data-toggle="collapse" data-target="#soin{{ $item -> id }}">
                             <a href="/carnet/{{ $carnet -> id }}/editer/{{ $item -> id }}" class="btn btn-primary p-1"><i class="fas fa-pencil-alt"></i></a> <a 
                                 href="/carnet/supprimer/{{ $item -> id }}" class="btn btn-secondary p-1"
                                 onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce soin ?')"><i 
@@ -42,7 +43,9 @@
                             <b>{{ $item -> type }}</b> @if ($item -> rappel === 'oui') <i class="fas fa-bell text-danger"></i> @endif 
                             <i class="fas fa-calendar-alt text-success"></i> {{ utf8_encode(strftime('%d %B %Y - %Hh%M', strtotime($item -> date))) }} @if ($item -> effectue_par != null) 
                             effectué par {{ $item -> effectue_par}} @endif
+                            @if ($item -> nom_produit != null || $item -> remarques != null) <i class="fas fa-sticky-note text-info font-weight-bold"></i>@endif
                         </li>
+                        <span id="soin{{ $item -> id }}" class="collapse">@if ($item -> nom_produit != null) <i class="fas fa-caret-right"></i> Produit utilisé : {{ $item -> nom_produit }} <br/>@endif @if ($item -> remarques != null) <i class="fas fa-caret-right"></i> Remarques : {{ $item -> remarques }}@endif</span>
                         @endforeach
                     </ul>
                     @if (count($carnet -> treatments) > 5)

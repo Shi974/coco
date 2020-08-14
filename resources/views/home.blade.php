@@ -71,6 +71,7 @@
                         </button>
                     </a>
                     <br/>
+                    @if ($loop -> last) @else <hr/>@endif
                     @endforeach
                 </div>
             </div>
