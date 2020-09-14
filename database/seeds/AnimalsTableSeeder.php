@@ -21,5 +21,15 @@ class UsersTableSeeder extends Seeder {
         $animal -> health_records_id = "1";
         $animal -> save();
 
+        $animal = new Animal;
+        $animal -> first_name = "Kitkat";    
+        $animal -> last_name = "Techer";    
+        $animal -> birth_date = "2020-04-15";
+        $animal -> type = "chat";
+        $animal -> breed = "British shorthair";
+        $animal -> users_id = "1";
+        $animal -> veterinary_id = "2";
+        $animal -> health_records_id = "2";
+        $animal -> save();
     }
 }

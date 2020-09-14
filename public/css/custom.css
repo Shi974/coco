@@ -23,6 +23,15 @@ img.icone_animal {
     height: 50px;
 }
 
+/* FORMULAIRE */
+.required {
+    font-weight: bold;
+    color: red !important;
+    font-size: 1.1rem !important;
+    margin-left: -10px;
+}
+
+/* RESPONSIVE */
 @media all and (max-width: 768px) {
     #header {
         padding: 10px;

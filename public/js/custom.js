@@ -35,4 +35,25 @@ $(document).ready(function () {
         $(".selectDescVeto").hide();
         $("." + targetId).show();
     }).trigger('change');
+
+    // REGISTER INPUT RACES ANIMAL
+    $('select#animal_type').change(function() {
+        var selectedVal = $("select#animal_type").val();
+        if('chien' == selectedVal){
+            var foodList = "<select id='animal_breed' class='form-control @error('animal_breed') is-invalid @enderror' name='animal_breed' value='{{ old('animal_breed') }}' required autocomplete='animal_breed' autofocus><option>Berger Allemand</option><option>Border Collie</option><option>Bulldog Anglais</option><option>Caniche</option><option>Chihuahua</option><option>Corgi</option><option>Husky</option><option>Labrador</option><option>Royal Bourbon</option><option>Teckel</option><option value='autre'>Autre</option></select>";
+            $('#animal_breed').remove();
+            $('#selectBreed').append(foodList);
+        } else if ('chat' == selectedVal){
+            var countryList = "<select id='animal_breed' class='form-control @error('animal_breed') is-invalid @enderror' name='animal_breed' value='{{ old('animal_breed') }}' required autocomplete='animal_breed' autofocus><option>American Shorthair</option><option>British Shorthair</option><option>Chartreux</option><option>Maine coone</option><option>Norvégien</option><option>Persan</option><option>Sacré de Birmanie</option><option>Siamois</option><option value='autre'>Autre</option></select>";
+            $('#animal_breed').remove();
+            $('#selectBreed').append(countryList);
+        }
+    });
+
+    //FIXME autre input à intégrer
+    $('select#animal_breed').change(function() {
+        var breed = "";
+        breed += $("select#animal_breed option:selected").text();
+        console.log(breed);
+    });
 });
