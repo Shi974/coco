@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Models\Veterinary;
 
-class UsersTableSeeder extends Seeder {
+class VeterinariesTableSeeder extends Seeder {
     /**
      * Run the database seeds.
      *

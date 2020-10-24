@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Models\HealthRecord;
 
-class UsersTableSeeder extends Seeder {
+class Health_recordsTableSeeder extends Seeder {
     /**
      * Run the database seeds.
      *

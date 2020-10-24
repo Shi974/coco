@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Models\Animal;
 
-class UsersTableSeeder extends Seeder {
+class AnimalsTableSeeder extends Seeder {
     /**
      * Run the database seeds.
      *
