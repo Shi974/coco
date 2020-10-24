@@ -26,7 +26,7 @@ Route::get('/fiche/{id}', 'AnimalController@showCard');
 Route::post('/geolocaliser_animal', 'AnimalController@sendLocation');
 
 // AUTHENTIFICATION
-// Auth::routes();
+Auth::routes();
 
 // USER
 Route::group(['middleware' => 'auth'], function () {
